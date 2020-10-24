@@ -3,9 +3,9 @@ export interface PlayRequest {
 }
 
 export interface GameResult {
-    PlayerChoice: string;
-    CpuChoice: string;
-    Result: string;
+    playerChoice: string;
+    cpuChoice: string;
+    result: string;
 }
 
 //these are set exactly as in Api Requirements.

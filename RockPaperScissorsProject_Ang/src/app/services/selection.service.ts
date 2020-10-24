@@ -32,9 +32,9 @@ export class SelectionService {
       PlayerChoice: this._playerselection,
     });
     request.subscribe((response) => {
-      this._playerselection = response.PlayerChoice;
-      this._aiselection = response.CpuChoice;
-      this._result = response.Result;
+      this._playerselection = response.playerChoice;
+      this._aiselection = response.cpuChoice;
+      this._result = response.result;
       this.router.navigateByUrl('/result');
     }
     );

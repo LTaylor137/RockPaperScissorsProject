@@ -23,14 +23,13 @@
 </div>
 
 
-<div class="devinfo">
-    <div *ngIf="this.selectionService.showHideDevInfo === true">
+<div *ngIf="this.selectionService.showHideDevInfo === true" class="devinfo">
 
-        <p>selection component</p>
-        <a routerLink="result">move to result</a> <br>
-        <a routerLink="selection">move to selection</a>
-        <h1>player selected: {{selectionService.selection}}</h1>
-        <h1>AI selected: {{selectionService._aiselection}}</h1>
+    <p>result component</p>
+    <a routerLink="result">move to result</a> <br>
+    <a routerLink="selection">move to selection</a>
+    <h1>player selected: {{selectionService.selection}}</h1>
+    <h1>AI selected: {{selectionService._aiselection}}</h1>
+    <h1>Result: {{selectionService._result}}</h1>
 
-    </div>
 </div>

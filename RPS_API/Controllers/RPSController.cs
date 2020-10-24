@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using RPS_API.models;
+using RPS_API.Models;
 
 namespace RPS_API.Controllers
 {
@@ -12,21 +8,11 @@ namespace RPS_API.Controllers
     [Route("[controller]")]
     public class ResultController : ControllerBase
     {
-        public static PlayRequest R = new PlayRequest();
-
-        //testing player input hardcoded as rock.
-        [HttpGet("PlayRock")]
-        public string GetPlayRock(string Result)
-        {
-            return R.PlayRock();
-        }
-
-        //sends custom input
         [HttpPost]
-        public string GetResult(PlayRequest PostInput)
+        public GameResult GetResult(PlayRequest _postInput)
         {
-            R.Input = PostInput.Input;
-            return R.GameResult();
+            GameResult GR = new GameResult(_postInput.PlayerChoice);
+            return GR;
         }
 
     }

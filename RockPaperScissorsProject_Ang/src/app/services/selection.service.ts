@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { PlayRequest, GameResult } from '../models/Submit';
+// import { randomBytes } from 'crypto';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,46 +12,34 @@ import { PlayRequest, GameResult } from '../models/Submit';
 
 export class SelectionService {
 
-  _playerselection: string | null;
-  _aiselection: string | null;
-  _result: string | null;
+  private _selection?: 'rock' | 'paper' | 'scissors';
+  _aioptions = ["rock", "paper", "scissors"];
+  _aiselection?= null;
 
-  showHideDevInfo: boolean = false;
+  showhideoptions: boolean = false;
 
   get selection() {
-    return this._playerselection;
+    return this._selection;
   }
 
-  constructor(private router: Router, private httpClient: HttpClient) {
-  }
+  constructor(private router: Router) { }
 
-  setSelection(playerchoice: 'rock' | 'paper' | 'scissors') {
-    this._playerselection = playerchoice;
-  }
+  commitSelection(option: 'rock' | 'paper' | 'scissors') {
 
-  commitSelection() {
-    let request = this.httpClient.post<GameResult>("http://localhost:5000/Result",
-    {
-      PlayerChoice: this._playerselection,
-    });
-    request.subscribe((response) => {
-      this._playerselection = response.PlayerChoice;
-      this._aiselection = response.CpuChoice;
-      this._result = response.Result;
-      this.router.navigateByUrl('/result');
+    this._aiselection = Math.floor(Math.random() * this._aioptions.length);
+    if (this._aiselection === 0) {
+      this._aiselection = "rock";
+    } else if (this._aiselection === 1) {
+      this._aiselection = "paper";
+    } else if (this._aiselection === 2) {
+      this._aiselection = "scissors";
     }
-    );
 
-
-    // showhidedevinfo() {
-    //   if (this.selectionService.showHideDevInfo == false) {
-    //     console.log("option menu shown");
-    //     this.selectionService.showHideDevInfo = true;
-    //   } else if (this.selectionService.showHideDevInfo == true) {
-    //     console.log("option menu hidden");
-    //     this.selectionService.showHideDevInfo = false;
-    //   }
-    // }
-
+    of(null).pipe(delay(100)).subscribe(() => {
+      this._selection = option;
+      this.router.navigateByUrl("/result");
+    });
   }
+
+
 }

@@ -1,36 +1,25 @@
-<div class="devinfo">
-    Options: <button (click)="showhidedevinfo()"> Show/Hide Dev Info </button>
-</div>
+<div class="options">
+Options: <button (click)="showhidebutton()"> Show/Hide Dev Info </button> 
+</div
 
-<div class="pagecontainer">
+><div class="pagecontainer">
 
     <div class="title">
-        <h1>Select your choice</h1>
+    <h1>Select your choice</h1>
     </div>
 
     <div class="selectcontainer">
-        <div id="rock" class="box" (click)="playerSelection('rock')"><img class="img" src="../../assets/rock.png"></div>
-        <div id="paper" class="box" (click)="playerSelection('paper')"><img class="img" src="../../assets/paper.png">
-        </div>
-        <div id="scissors" class="box" (click)="playerSelection('scissors')"><img class="img"
-                src="../../assets/scissors.png"></div>
-    </div>
-
-    <div>
-        <button class="button" (click)="shoot()"> Shoot </button>
+        <div class="box" (click)="selectOption('rock')"><img class="img" src="../../assets/rock.png"></div>
+        <div class="box" (click)="selectOption('paper')"><img class="img" src="../../assets/paper.png"></div>
+        <div class="box" (click)="selectOption('scissors')"><img class="img" src="../../assets/scissors.png"></div>
     </div>
 
 </div>
 
+<div class="devinfo"  *ngIf="this.selectionService.showhideoptions === true" >
 
-<div class="devinfo">
-    <div *ngIf="this.selectionService.showHideDevInfo === true">
+    <p>selection component</p>
 
-        <p>selection component</p>
-        <a routerLink="result">move to result</a> <br>
-        <a routerLink="selection">move to selection</a>
-        <h1>player selected: {{selectionService.selection}}</h1>
-        <h1>AI selected: {{selectionService._aiselection}}</h1>
 
-    </div>
+
 </div>

@@ -1,21 +1,12 @@
-<div class="options">
-    Options: <button (click)="showhidebutton()"> Show/Hide Dev Info </button> 
+<div class="devinfo">
+    Options: <button (click)="showhidedevinfo()"> Show/Hide Dev Info </button> 
 </div>
 
 <div class="pagecontainer">
 
-
-    <div class="title" *ngIf="playerwins === true">
-        <h1>player wins!</h1>
+    <div class="title">
+        <h1>{{selectionService._result}}</h1>
     </div>
-    <div class="title" *ngIf="playerwins === false">
-        <h1>AI wins!</h1>
-    </div>
-    <div class="title" *ngIf="playerwins === null">
-        <h1>It's a draw</h1>
-    </div>
-
-   
 
     <div class="selectcontainer">
         <div class="box"><img class="img" src="../../assets/{{selectionService.selection}}.png"></div>
@@ -24,19 +15,19 @@
     </div>
 
     <div>
-        <button class="returnbutton" routerLink="selection"> Play Again </button>
+        <button class="button" routerLink="selection"> Play Again </button>
     </div>
 
 </div>
 
 
-<div *ngIf="this.selectionService.showhideoptions === true" class="devinfo">
+<div *ngIf="this.selectionService.showHideDevInfo === true" class="devinfo">
 
     <p>result component</p>
-
-    <a routerLink="selection">DEVTOOL: back to selection</a>
-
+    <a routerLink="result">move to result</a> <br>
+    <a routerLink="selection">move to selection</a>
     <h1>player selected: {{selectionService.selection}}</h1>
     <h1>AI selected: {{selectionService._aiselection}}</h1>
+    <h1>Result: {{selectionService._result}}</h1>
 
 </div>

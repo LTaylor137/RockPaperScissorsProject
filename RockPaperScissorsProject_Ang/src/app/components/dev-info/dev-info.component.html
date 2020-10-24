@@ -1,0 +1,10 @@
+<div class="devinfo">
+    <div *ngIf="this.selectionService.showHideDevInfo === true">
+    <p>result component</p>
+        <a routerLink="result">move to result</a> <br>
+        <a routerLink="selection">move to selection</a>
+        <h1>player selected: {{selectionService._playerselection}}</h1>
+        <h1>AI selected: {{selectionService._aiselection}}</h1>
+        <h1>Result: {{selectionService._result}}</h1>
+    </div>
+</div>

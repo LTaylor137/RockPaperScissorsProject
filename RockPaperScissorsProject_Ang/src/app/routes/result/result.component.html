@@ -1,6 +1,4 @@
-<div class="devinfo">
-    Options: <button (click)="showhidedevinfo()"> Show/Hide Dev Info </button> 
-</div>
+<app-options></app-options>
 
 <div class="pagecontainer">
 
@@ -20,14 +18,4 @@
 
 </div>
 
-
-<div *ngIf="this.selectionService.showHideDevInfo === true" class="devinfo">
-
-    <p>result component</p>
-    <a routerLink="result">move to result</a> <br>
-    <a routerLink="selection">move to selection</a>
-    <h1>player selected: {{selectionService._playerselection}}</h1>
-    <h1>AI selected: {{selectionService._aiselection}}</h1>
-    <h1>Result: {{selectionService._result}}</h1>
-
-</div>
+<app-dev-info></app-dev-info>

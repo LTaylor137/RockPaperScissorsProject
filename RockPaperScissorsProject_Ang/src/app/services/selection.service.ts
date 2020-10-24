@@ -28,9 +28,9 @@ export class SelectionService {
 
   commitSelection() {
     let request = this.httpClient.post<GameResult>("http://localhost:5000/Result",
-    {
-      PlayerChoice: this._playerselection,
-    });
+      {
+        PlayerChoice: this._playerselection,
+      });
     request.subscribe((response) => {
       this._playerselection = response.playerChoice;
       this._aiselection = response.cpuChoice;
@@ -38,17 +38,18 @@ export class SelectionService {
       this.router.navigateByUrl('/result');
     }
     );
-
-
-    // showhidedevinfo() {
-    //   if (this.selectionService.showHideDevInfo == false) {
-    //     console.log("option menu shown");
-    //     this.selectionService.showHideDevInfo = true;
-    //   } else if (this.selectionService.showHideDevInfo == true) {
-    //     console.log("option menu hidden");
-    //     this.selectionService.showHideDevInfo = false;
-    //   }
-    // }
-
   }
+
+  showhidedevinfo() {
+    if (this.showHideDevInfo == false) {
+      console.log("option menu shown");
+      this.showHideDevInfo = true;
+    } else if (this.showHideDevInfo == true) {
+      console.log("option menu hidden");
+      this.showHideDevInfo = false;
+    }
+  }
+
+
+
 }

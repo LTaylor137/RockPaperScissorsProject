@@ -39,10 +39,6 @@
     border-radius: 40px;
 }
 
-/* .box:hover {
-    background-color: rgb(233, 218, 233);
-} */
-
 .boxselected {
     background-color: rgb(122, 224, 97, 0.5);
 }
@@ -50,12 +46,9 @@
 .img {
     height: 100%;
     width: 100%;
-    /* object-fit: contain */
 }
 
 .button {
-    /* height: auto;
-        width: auto; */
     margin: 50px;
     padding: 10px;
     border-radius: 8px;
@@ -69,8 +62,3 @@
     -moz-appearance: none;
 }
 
-.devinfo {
-    background-color: dimgray;
-    padding: 10px;
-    min-height: 20px;
-}

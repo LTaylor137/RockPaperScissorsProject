@@ -38,17 +38,4 @@ export class SelectionComponent implements OnInit {
     this.selectionService.commitSelection();
   }
 
-  showhidedevinfo() {
-    if (this.selectionService.showHideDevInfo == false) {
-      console.log("option menu shown");
-      this.selectionService.showHideDevInfo = true;
-    } else if (this.selectionService.showHideDevInfo == true) {
-      console.log("option menu hidden");
-      this.selectionService.showHideDevInfo = false;
-    }
-  }
-
-
-
-
 }

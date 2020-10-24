@@ -2,16 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { SelectionService } from "../../services/selection.service";
 
 @Component({
-  selector: 'app-result',
-  templateUrl: './result.component.html',
-  styleUrls: ['../selection/selection.component.css']
+  selector: 'app-dev-info',
+  templateUrl: './dev-info.component.html',
+  styleUrls: ['./dev-info.component.css']
 })
-
-export class ResultComponent implements OnInit {
+export class DevInfoComponent implements OnInit {
 
   constructor(public selectionService: SelectionService) { }
 
   ngOnInit(): void {
-}
+  }
 
 }

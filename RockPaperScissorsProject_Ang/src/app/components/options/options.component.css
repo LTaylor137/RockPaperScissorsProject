@@ -1,12 +1,52 @@
 .options {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(226, 218, 159);
+    min-height: 20px;
+}
 
+.optionsdrawer {
+    background-color:  rgb(146, 112, 39);
+    min-height: 20px;
+    padding: 10px;
+}
 
-display: flex;
-flex-direction: row;
-justify-content: space-between;
+.spacer {
+    flex-grow: 1;
+}
 
-
-    background-color:rgb(226, 218, 159);
+.ToggleMenuButton {
+    background-color:  rgb(146, 112, 39);
     padding: 10px;
     min-height: 20px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: large;
+    cursor: pointer;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 21px solid transparent;
+    border-bottom: 21px solid transparent;
+    border-left: 21px solid rgb(146, 112, 39);
+    cursor: pointer;
+}
+
+.username {
+    margin: 10px;
+    color: rgb(134, 103, 36);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: large;
+}
+
+.UNInput {
+    margin: 10px;
+    color: rgb(134, 103, 36);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: large;
 }

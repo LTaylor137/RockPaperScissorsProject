@@ -14,13 +14,14 @@ export class RPSGameService {
   _cpuselection: string | null;
   _result: string | null;
 
+  ShowMenu: boolean = false;
   showHideDevInfo: boolean = false;
 
   constructor(private router: Router, private httpClient: HttpClient) {
   }
 
-  setSelection(playerchoice: 'rock' | 'paper' | 'scissors') {
-    this._playerselection = playerchoice;
+  setSelection(playerselection: 'rock' | 'paper' | 'scissors') {
+    this._playerselection = playerselection;
   }
 
   commitSelection() {
@@ -43,6 +44,14 @@ export class RPSGameService {
     );
   }
 
+  ToggleMenu(){
+      if (this.ShowMenu === true){
+     this.ShowMenu = false;
+      } else if (this.ShowMenu === false){
+       this.ShowMenu = true;
+      }
+    }
+  
   showhidedevinfo() {
     if (this.showHideDevInfo == false) {
       console.log("option menu shown");

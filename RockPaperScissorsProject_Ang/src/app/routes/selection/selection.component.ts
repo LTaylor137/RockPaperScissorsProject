@@ -14,20 +14,20 @@ export class SelectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  playerSelection(playerchoice: 'rock' | 'paper' | 'scissors') {
-    this.rpsgameService.setSelection(playerchoice);
+  playerSelection(playerselection: 'rock' | 'paper' | 'scissors') {
+    this.rpsgameService.setSelection(playerselection);
 
     //the below highlights the selected option==========================
     document.getElementById("rock").classList.remove('boxselected');
     document.getElementById("paper").classList.remove('boxselected');
     document.getElementById("scissors").classList.remove('boxselected');
-    if (playerchoice === 'rock') {
+    if (playerselection === 'rock') {
       document.getElementById("rock").classList.add('boxselected');
     } 
-    if (playerchoice === 'paper') {
+    if (playerselection === 'paper') {
       document.getElementById("paper").classList.add('boxselected');
     } 
-    if (playerchoice === 'scissors') {
+    if (playerselection === 'scissors') {
       document.getElementById("scissors").classList.add('boxselected');
     }
     //==================================================================

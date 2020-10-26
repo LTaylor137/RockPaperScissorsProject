@@ -1,7 +1,14 @@
 <div class="devinfo">
+    <div class="flexrow">
+        <div class="spacer"></div>
+        <div class="arrow-left"></div>
+        <div class="gamecode">Game Code: XYZ123</div>
+    </div>
+
+
     <div *ngIf="this.rpsgameService.showHideDevInfo === true">
-    <p>result component</p>
-        
+        <p>result component</p>
+
         <a routerLink="/selection">move to selection</a> <br>
         <a routerLink="/result">move to result</a> <br>
         <a routerLink="/leaderboard">move to leaderboard</a>

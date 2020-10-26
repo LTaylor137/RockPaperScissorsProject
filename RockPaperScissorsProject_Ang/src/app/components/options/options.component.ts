@@ -13,8 +13,15 @@ export class OptionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ToggleMenu(){
+    this.rpsgameService.ToggleMenu();
+  }
+
   DevInfoButton(){
     this.rpsgameService.showhidedevinfo();
   }
+
+
+
 
 }

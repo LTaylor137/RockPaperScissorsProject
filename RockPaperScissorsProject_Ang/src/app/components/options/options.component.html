@@ -1,7 +1,24 @@
 <div class="options">
-    <div>Options: <button (click)="DevInfoButton()"> Show/Hide Dev Info </button>
+
+    <div class="optionsdrawer" *ngIf="rpsgameService.ShowMenu === true">
+        <button (click)="DevInfoButton()"> Show/Hide Dev Info </button>
+        <button> Toggle Animations </button>  
+        <button> Use local API </button>  
     </div>
-    <div>
+
+    <div class="ToggleMenuButton" (click)="ToggleMenu()">
+        <a *ngIf="rpsgameService.ShowMenu === false">Options ></a>
+        <a *ngIf="rpsgameService.ShowMenu === true">< Options</a>
+    </div>
+
+    <div class="arrow-right" (click)="ToggleMenu()"></div>
+
+    <div class="spacer"></div>
+
+    <div class="username">
         Username: <input>
     </div>
+
+
+
 </div>

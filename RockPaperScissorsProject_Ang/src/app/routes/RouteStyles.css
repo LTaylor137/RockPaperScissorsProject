@@ -2,11 +2,6 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.devinfo {
-    background-color: dimgray;
-    padding: 5px;
-}
-
 .title {
     padding: 40px;
 }
@@ -62,3 +57,23 @@
     -moz-appearance: none;
 }
 
+.LBList {
+    width: 480px;
+}
+
+.ListTitles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.Listitem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    list-style: none;
+    background-color: rgb(251, 247, 199);
+    margin-top: 11px;
+}

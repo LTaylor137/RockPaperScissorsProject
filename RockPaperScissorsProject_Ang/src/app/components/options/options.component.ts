@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectionService } from "../../services/selection.service";
+import { RPSGameService } from "../../services/RPSGame.service";
 
 @Component({
   selector: 'app-options',
@@ -8,13 +8,13 @@ import { SelectionService } from "../../services/selection.service";
 })
 export class OptionsComponent implements OnInit {
 
-  constructor(public selectionService: SelectionService) { }
+  constructor(public rpsgameService: RPSGameService) { }
 
   ngOnInit(): void {
   }
 
   DevInfoButton(){
-    this.selectionService.showhidedevinfo();
+    this.rpsgameService.showhidedevinfo();
   }
 
 }

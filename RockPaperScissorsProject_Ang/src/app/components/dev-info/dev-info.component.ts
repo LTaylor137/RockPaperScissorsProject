@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectionService } from "../../services/selection.service";
+import { RPSGameService } from "../../services/RPSGame.service";
 
 @Component({
   selector: 'app-dev-info',
@@ -8,7 +8,7 @@ import { SelectionService } from "../../services/selection.service";
 })
 export class DevInfoComponent implements OnInit {
 
-  constructor(public selectionService: SelectionService) { }
+  constructor(public rpsgameService: RPSGameService) { }
 
   ngOnInit(): void {
   }

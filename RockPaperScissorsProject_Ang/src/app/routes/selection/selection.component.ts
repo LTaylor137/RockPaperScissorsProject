@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectionService } from "../../services/selection.service";
-import { style } from '@angular/animations';
+import { RPSGameService } from "../../services/RPSGame.service";
 
 @Component({
   selector: 'app-selection',
   templateUrl: './selection.component.html',
-  styleUrls: ['./selection.component.css']
+  styleUrls: ['../RouteStyles.css']
 })
 
 export class SelectionComponent implements OnInit {
 
-  constructor(public selectionService: SelectionService) { }
+  constructor(public rpsgameService: RPSGameService) { }
 
   ngOnInit(): void {
   }
 
   playerSelection(playerchoice: 'rock' | 'paper' | 'scissors') {
-    this.selectionService.setSelection(playerchoice);
+    this.rpsgameService.setSelection(playerchoice);
 
     //the below highlights the selected option==========================
     document.getElementById("rock").classList.remove('boxselected');
@@ -35,7 +34,7 @@ export class SelectionComponent implements OnInit {
   }
 
   shoot() {
-    this.selectionService.commitSelection();
+    this.rpsgameService.commitSelection();
   }
 
 }

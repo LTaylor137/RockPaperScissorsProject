@@ -11,14 +11,10 @@ import { ResultComponent } from '../routes/result/result.component';
 export class RPSGameService {
 
   _playerselection: string | null;
-  _aiselection: string | null;
+  _cpuselection: string | null;
   _result: string | null;
 
   showHideDevInfo: boolean = false;
-
-  get selection() {
-    return this._playerselection;
-  }
 
   constructor(private router: Router, private httpClient: HttpClient) {
   }
@@ -28,17 +24,19 @@ export class RPSGameService {
   }
 
   commitSelection() {
+
     //use this when running API on local machine.
     // let request = this.httpClient.post<GameResult>("http://localhost:5000/Result",
 
     //use this when running API on elastic beanstalk servers.
     let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Result",
+
       {
         PlayerChoice: this._playerselection,
       });
     request.subscribe((response) => {
       this._playerselection = response.playerChoice;
-      this._aiselection = response.cpuChoice;
+      this._cpuselection = response.cpuChoice;
       this._result = response.result;
       this.router.navigateByUrl('/result');
     }

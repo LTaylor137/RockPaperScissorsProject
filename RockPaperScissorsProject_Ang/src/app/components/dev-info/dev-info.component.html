@@ -7,13 +7,14 @@
 
 
     <div *ngIf="this.rpsgameService.showHideDevInfo === true">
-        <p>result component</p>
-
         <a routerLink="/selection">move to selection</a> <br>
         <a routerLink="/result">move to result</a> <br>
-        <a routerLink="/leaderboard">move to leaderboard</a>
-        <h1>player selected: {{rpsgameService._playerselection}}</h1>
-        <h1>AI selected: {{rpsgameService._cpuselection}}</h1>
-        <h1>Result: {{rpsgameService._result}}</h1>
+        <a routerLink="/leaderboard">move to leaderboard</a> <br><br>
+        player selection: {{rpsgameService._playerselection}}<br>
+        CPU Choice: {{rpsgameService._cpuselection}}<br>
+        Result: {{rpsgameService._result}}<br>
+        username: {{rpsgameService._username}}<br>
+        winRatio: {{rpsgameService._winRatio}}<br>
+        turnsPlayed: {{rpsgameService._turnsPlayed}}
     </div>
 </div>

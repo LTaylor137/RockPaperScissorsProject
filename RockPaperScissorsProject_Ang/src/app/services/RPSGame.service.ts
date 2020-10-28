@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { PlayRequest, GameResult } from '../models/Submit';
+import { PlayRequest, GameResult, UsernameRequest, ShowLeaderBoard } from '../models/Submit';
 import { ResultComponent } from '../routes/result/result.component';
 
 @Injectable({
@@ -14,8 +14,13 @@ export class RPSGameService {
   _cpuselection: string | null;
   _result: string | null;
 
+  _username: string | "null";
+  _winRatio: string | null;
+  _turnsPlayed: string | null;
+
   ShowMenu: boolean = false;
   showHideDevInfo: boolean = false;
+  _UNSubmitted: boolean = false;
 
   constructor(private router: Router, private httpClient: HttpClient) {
   }
@@ -27,11 +32,9 @@ export class RPSGameService {
   commitSelection() {
 
     //use this when running API on local machine.
-    // let request = this.httpClient.post<GameResult>("http://localhost:5000/Result",
-
+    let request = this.httpClient.post<GameResult>("http://localhost:5000/Result",
     //use this when running API on elastic beanstalk servers.
-    let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Result",
-
+    // let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Result",
       {
         PlayerChoice: this._playerselection,
       });
@@ -40,6 +43,23 @@ export class RPSGameService {
       this._cpuselection = response.cpuChoice;
       this._result = response.result;
       this.router.navigateByUrl('/result');
+    }
+    );
+  }
+
+  Leaderboard() {
+     //use this when running API on local machine.
+     let request = this.httpClient.post<ShowLeaderBoard>("http://localhost:5000/Leaderboard",
+     //use this when running API on elastic beanstalk servers.
+     // let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Leaderboard",
+      {
+        Username: this._username,
+      });
+    request.subscribe((response) => {
+      this._username = response.username;
+      this._winRatio = response.winRatio;
+      this._turnsPlayed = response.turnsPlayed;
+      this.router.navigateByUrl('/leaderboard');
     }
     );
   }
@@ -59,6 +79,15 @@ export class RPSGameService {
     } else if (this.showHideDevInfo == true) {
       console.log("option menu hidden");
       this.showHideDevInfo = false;
+    }
+  }
+
+  SubmitUsername(_username: string) {
+    if (_username === "") {
+      alert("Username cannot be blank");
+    } else {
+      this._username = _username;
+      this._UNSubmitted = true;
     }
   }
 

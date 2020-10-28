@@ -2,13 +2,15 @@
 
     <div class="optionsdrawer" *ngIf="rpsgameService.ShowMenu === true">
         <button (click)="DevInfoButton()"> Show/Hide Dev Info </button>
-        <button> Toggle Animations </button>  
-        <button> Use local API </button>  
+        <button (click)="ResetUsername()"> Reset Username </button>
+        <button> <strike>Toggle Animations</strike> </button>
+        <button> <strike>Use local API</strike> </button>
     </div>
 
     <div class="ToggleMenuButton" (click)="ToggleMenu()">
         <a *ngIf="rpsgameService.ShowMenu === false">Options ></a>
-        <a *ngIf="rpsgameService.ShowMenu === true">< Options</a>
+        <a *ngIf="rpsgameService.ShowMenu === true">
+            < Options</a>
     </div>
 
     <div class="arrow-right" (click)="ToggleMenu()"></div>
@@ -16,7 +18,13 @@
     <div class="spacer"></div>
 
     <div class="username">
-        Username: <input>
+        <div *ngIf="this.rpsgameService._UNSubmitted === false">
+            Username: <input #UNInput (keyup.enter)="SubmitUNBtn(UNInput.value)"> <button class="submitUN" (click)="SubmitUNBtn(UNInput.value)">submit</button>
+        </div>
+        <div *ngIf="this.rpsgameService._UNSubmitted === true">
+            Hi {{this.rpsgameService._username}}!
+        </div>
+
     </div>
 
 

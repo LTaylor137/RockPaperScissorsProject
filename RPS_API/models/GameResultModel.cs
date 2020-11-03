@@ -4,12 +4,14 @@ namespace RPS_API.Models
 {
     public class GameResult
     {
+        public string Username { get; set; }
         public string PlayerChoice { get; set; }
         public string CpuChoice { get; set; }
         public string Result { get; set; }
 
-        public GameResult(string _playerChoice)
+        public GameResult(string _username, string _playerChoice)
         {
+            Username = _username;
             PlayerChoice = _playerChoice;
             CpuChoice = CalculateCpuChoice();
             Result = CalculateResult();

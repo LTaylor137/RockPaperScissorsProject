@@ -52,8 +52,7 @@ namespace RPS_API
             }
             app.UseCors();
 
-            // I had to disable this to stop the "app.UseHttpsRedirection();
-            // It would not send a request back through https://localhost:5001 otherwise.
+            // I had to disable this. It would not send a request back through https://localhost:5001 otherwise.
             // app.UseHttpsRedirection();
 
             app.UseRouting();

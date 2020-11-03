@@ -56,6 +56,5 @@ namespace RPS_API.Models
             return Result;
         }
 
-
     }
 }

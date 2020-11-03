@@ -1,4 +1,3 @@
-using System;
 
 namespace RPS_API.Models
 {
@@ -8,7 +7,6 @@ namespace RPS_API.Models
         public string PlayerChoice { get; set; }
         public int TurnsPlayed { get; set; }
     }
-
 }
 
 

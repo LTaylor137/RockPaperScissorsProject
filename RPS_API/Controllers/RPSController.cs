@@ -18,7 +18,6 @@ namespace RPS_API.Controllers
         {
             GameResult GR = new GameResult(model.Username, model.PlayerChoice);
             bool nameexists = false;
-
             foreach (User item in ListOfPlayers)
             {
                 if (item.Username.Contains(model.Username))
@@ -32,7 +31,6 @@ namespace RPS_API.Controllers
                     break;
                 }
             }
-
             if (nameexists == false)
             {
                 ListOfPlayers.Add(new User(model.Username, model.TurnsPlayed, 0));
@@ -40,23 +38,19 @@ namespace RPS_API.Controllers
             return GR;
         }
 
-        [HttpGet("GetList")]
-
-        public List<User> GetList()
+        [HttpGet("GetLeaderboard")]
+        public List<User> GetLeaderboard()
         {
             int Percentage;
             foreach (User item in ListOfPlayers)
             {
                 Percentage = (int)Math.Round((double)(100 * item.Wins) / item.TurnsPlayed);
                 item.WinRatio = Percentage;
-
                 ListUnsorted.Add(item);
             }
-
             //using Linq
             //https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
             List<User> ListSorted = ListUnsorted.OrderByDescending(User => User.WinRatio).ToList();
-
             return ListSorted;
         }
 

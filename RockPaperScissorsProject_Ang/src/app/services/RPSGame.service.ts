@@ -9,19 +9,19 @@ import { PlayRequest, GameResult } from '../models/RoundResult';
 
 export class RPSGameService {
 
-  _roundselection: string | null;
+  _currentRound: number | null;
+  _maxRounds: number | null;
   _playerselection: string | null;
   _cpuselection: string | null;
   _result: string | null;
   _username: string | null;
   _turnsPlayed: number | null;
-
-  constructor(private router: Router, private httpClient: HttpClient) {
-  }
+  
+  constructor(private router: Router, private httpClient: HttpClient) { }
 
   //set rounds / create game
-  setRounds(roundSelected: '1' | '3' | '5') {
-    this._roundselection = roundSelected;
+  setRounds(maxRounds: 1 | 3 | 5) {
+    this._maxRounds = maxRounds;
   }
 
   createGame() {

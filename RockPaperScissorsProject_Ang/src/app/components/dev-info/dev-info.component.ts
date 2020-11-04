@@ -7,6 +7,7 @@ import { OptionsService } from "../../services/options.service";
   templateUrl: './dev-info.component.html',
   styleUrls: ['./dev-info.component.css']
 })
+
 export class DevInfoComponent implements OnInit {
 
   constructor(public rpsgameService: RPSGameService, public optionsService: OptionsService) { }

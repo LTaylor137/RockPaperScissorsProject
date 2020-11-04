@@ -13,9 +13,8 @@ export class OptionsComponent implements OnInit {
   constructor(public rpsgameService: RPSGameService, public optionsService: OptionsService) { }
 
   ngOnInit(): void {
-
   }
-
+  
   ToggleMenu() {
     this.optionsService.ToggleMenu();
   }

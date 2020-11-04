@@ -15,8 +15,4 @@ export class ResultComponent implements OnInit {
   ngOnInit(): void {
 }
 
-SeeLeaderboard() {
-  this.leaderboardService.Leaderboard();
-}
-
 }

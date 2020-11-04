@@ -4,14 +4,14 @@ import { RPSGameService } from "../services/RPSGame.service";
 @Injectable({
   providedIn: 'root'
 })
+
 export class OptionsService {
 
   ShowMenu: boolean = false;
   showHideDevInfo: boolean = false;
   UNSubmitted: boolean = false;
 
-  constructor(public rpsgameService: RPSGameService) {
-  }
+  constructor(public rpsgameService: RPSGameService) { }
 
   ToggleMenu() {
     if (this.ShowMenu === true) {

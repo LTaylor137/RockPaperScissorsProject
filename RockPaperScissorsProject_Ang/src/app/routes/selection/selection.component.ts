@@ -12,6 +12,8 @@ export class SelectionComponent implements OnInit {
   constructor(public rpsgameService: RPSGameService) { }
 
   ngOnInit(): void {
+    this.rpsgameService._currentRound = 1;
+    this.rpsgameService._maxRounds = 1;
   }
 
   playerSelection(playerselection: 'rock' | 'paper' | 'scissors') {

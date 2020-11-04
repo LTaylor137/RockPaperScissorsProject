@@ -16,15 +16,15 @@
             </div>
 
             <div>
-                <ul *ngFor="let ListItem of leaderboardService.LeaderboardItem">
+                <div *ngFor="let ListItem of leaderboardService.LeaderboardItem">
 
-                    <li class="Listitem">
+                    <div class="Listitem">
                         <div>{{ ListItem.username }}</div>
                         <div>{{ ListItem.winRatio }}</div>
                         <div>{{ ListItem.turnsPlayed}}</div>
-                    </li>
+                    </div>
 
-                </ul>
+                </div>
             </div>
 
         </div>

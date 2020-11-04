@@ -4,7 +4,7 @@
         <!-- <div class="arrow-right"></div> -->
         <div class="spacer"></div>
         <div class="arrow-left"></div>
-        <div class="gamecode">Rounds: 1/{{this.rpsgameService._roundselection}}</div>
+        <div class="gamecode">Rounds: {{this.rpsgameService._currentRound}}/{{this.rpsgameService._maxRounds}}</div>
         <!-- <div class="gamecode">Game Code: XYZ123</div> -->
     </div>
 
@@ -13,7 +13,7 @@
         <a routerLink="/selection">move to selection</a> <br>
         <a routerLink="/result">move to result</a> <br>
         <a routerLink="/leaderboard">move to leaderboard</a> <br><br>
-        roundselection: {{rpsgameService._roundselection}}<br>
+        roundselection: {{rpsgameService._maxRounds}}<br>
         player selection: {{rpsgameService._playerselection}}<br>
         CPU Choice: {{rpsgameService._cpuselection}}<br>
         Result: {{rpsgameService._result}}<br>

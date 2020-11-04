@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RPSGameService } from "../../services/RPSGame.service";
 import { LeaderboardService } from "../../services/leaderboard.service";
 
 @Component({
@@ -11,7 +10,9 @@ export class LeaderboardComponent implements OnInit {
 
   constructor(public leaderboardService : LeaderboardService) { }
 
+//leaderboard list get request is sent on page load.
   ngOnInit(): void {
+  this.leaderboardService.Leaderboard();
   }
 
 }

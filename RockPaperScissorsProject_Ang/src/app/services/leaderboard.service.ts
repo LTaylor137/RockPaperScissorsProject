@@ -11,15 +11,14 @@ export class LeaderboardService {
 
   LeaderboardItem: LeaderboardResponse[] = [];
 
-  constructor(private router: Router, private httpClient: HttpClient) {
-  }
+  constructor(private router: Router, private httpClient: HttpClient) { }
+
+  ngOnInit(): void { } //think about adding leaderboard request on page load later.
 
   Leaderboard() {
-    //use this when running API on local machine.
     let request = this.httpClient.get<LeaderboardResponse[]>("http://localhost:5000/Api/Result/GetLeaderboard",
-      //use this when running API on elastic beanstalk servers.
-      // let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Leaderboard",
-      {});
+    // let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Leaderboard",
+    {});
     request.subscribe((response) => {
       this.LeaderboardItem = response;
       this.router.navigateByUrl('/leaderboard');

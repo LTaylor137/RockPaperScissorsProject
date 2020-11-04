@@ -18,23 +18,42 @@ namespace RPS_API.Controllers
         {
             GameResult GR = new GameResult(model.Username, model.PlayerChoice);
             bool nameexists = false;
+
             foreach (User item in ListOfPlayers)
             {
                 if (item.Username.Contains(model.Username))
                 {
-                    if (GR.Result == "Player Wins")
-                    {
-                        item.Wins++;
-                    }
-                    item.TurnsPlayed++;
                     nameexists = true;
                     break;
                 }
             }
+
+            if (nameexists == true)
+            {
+                foreach (User item in ListOfPlayers)
+                {
+                    if (item.Username.Contains(model.Username))
+                    {
+                        if (GR.Result == "Player Wins")
+                        {
+                            item.Wins++;
+                        }
+                        item.TurnsPlayed++;
+                    }
+                }
+            }
+
+            //creates a new user with 1 turnplayed(from App) and a private variable if they won.
             if (nameexists == false)
             {
-                ListOfPlayers.Add(new User(model.Username, model.TurnsPlayed, 0));
+                int newplayerwin = 0;
+                if (GR.Result == "Player Wins")
+                {
+                    newplayerwin = 1;
+                }
+                ListOfPlayers.Add(new User(model.Username, model.TurnsPlayed, newplayerwin));
             }
+            
             return GR;
         }
 

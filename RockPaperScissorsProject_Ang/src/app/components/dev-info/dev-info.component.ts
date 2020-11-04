@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RPSGameService } from "../../services/RPSGame.service";
+import { OptionsService } from "../../services/options.service";
 
 @Component({
   selector: 'app-dev-info',
@@ -8,7 +9,7 @@ import { RPSGameService } from "../../services/RPSGame.service";
 })
 export class DevInfoComponent implements OnInit {
 
-  constructor(public rpsgameService: RPSGameService) { }
+  constructor(public rpsgameService: RPSGameService, public optionsService: OptionsService) { }
 
   ngOnInit(): void {
   }

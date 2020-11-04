@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PlayRequest, GameResult } from '../models/RoundResult';
-import { UsernameRequest, LeaderboardResponse } from "../models/Leaderboard";
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +10,11 @@ import { UsernameRequest, LeaderboardResponse } from "../models/Leaderboard";
 export class RPSGameService {
 
   _roundselection: string | null;
-
   _playerselection: string | null;
   _cpuselection: string | null;
   _result: string | null;
   _username: string | null;
   _turnsPlayed: number | null;
-
-  LeaderboardItem: LeaderboardResponse[] = [];
-
-  ShowMenu: boolean = false;
-  showHideDevInfo: boolean = false;
-  UNSubmitted: boolean = false;
 
   constructor(private router: Router, private httpClient: HttpClient) {
   }
@@ -67,45 +59,6 @@ export class RPSGameService {
     });
   }
 
-  Leaderboard() {
-    //use this when running API on local machine.
-    let request = this.httpClient.get<LeaderboardResponse[]>("http://localhost:5000/Api/Result/GetLeaderboard",
-      //use this when running API on elastic beanstalk servers.
-      // let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Leaderboard",
-      {});
-    request.subscribe((response) => {
-      this.LeaderboardItem = response;
-      this.router.navigateByUrl('/leaderboard');
-    }
-    );
-  }
-
-  ToggleMenu() {
-    if (this.ShowMenu === true) {
-      this.ShowMenu = false;
-    } else if (this.ShowMenu === false) {
-      this.ShowMenu = true;
-    }
-  }
-
-  showhidedevinfo() {
-    if (this.showHideDevInfo == false) {
-      console.log("option menu shown");
-      this.showHideDevInfo = true;
-    } else if (this.showHideDevInfo == true) {
-      console.log("option menu hidden");
-      this.showHideDevInfo = false;
-    }
-  }
-
-  SubmitUsername(_username: string) {
-    if (_username === "") {
-      alert("Username cannot be blank");
-    } else {
-      this._username = _username;
-      this.UNSubmitted = true;
-    }
-  }
 
 
 

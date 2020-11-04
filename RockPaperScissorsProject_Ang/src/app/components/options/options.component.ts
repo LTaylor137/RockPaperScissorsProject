@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RPSGameService } from "../../services/RPSGame.service";
+import { OptionsService } from "../../services/options.service";
 
 @Component({
   selector: 'app-options',
@@ -7,40 +8,28 @@ import { RPSGameService } from "../../services/RPSGame.service";
   styleUrls: ['./options.component.css']
 })
 
-
-
-
-
-
 export class OptionsComponent implements OnInit {
 
-  constructor(public rpsgameService: RPSGameService) { }
+  constructor(public rpsgameService: RPSGameService, public optionsService: OptionsService) { }
 
   ngOnInit(): void {
-
-//     document.getElementById("UNInput").addEventListener("keyup", function (event) {
-//   event.preventDefault();
-//   if (event.key || event.keyCode === 13) {
-//     document.getElementById("UNSubBut").click();
-//   }
-// });
 
   }
 
   ToggleMenu() {
-    this.rpsgameService.ToggleMenu();
+    this.optionsService.ToggleMenu();
   }
 
   DevInfoButton() {
-    this.rpsgameService.showhidedevinfo();
+    this.optionsService.showhidedevinfo();
   }
 
   SubmitUNBtn(_username: string) {
     _username = _username;
-    this.rpsgameService.SubmitUsername(_username);
+    this.optionsService.SubmitUsername(_username);
   }
 
   ResetUsername() {
-    this.rpsgameService.UNSubmitted = false;
+    this.optionsService.UNSubmitted = false;
   }
 }

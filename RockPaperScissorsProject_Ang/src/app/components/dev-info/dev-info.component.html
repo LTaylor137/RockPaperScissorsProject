@@ -1,22 +1,14 @@
 <div class="devinfo">
 
-    
-        
-        
-        
-   
-
     <div class="flexrow">
-        <div class="gamecode">Rounds: 1/{{this.rpsgameService._roundselection}}</div>
-        <div class="arrow-right"></div>
+        <!-- <div class="arrow-right"></div> -->
         <div class="spacer"></div>
         <div class="arrow-left"></div>
-        <div class="gamecode">Game Code: XYZ123</div>
+        <div class="gamecode">Rounds: 1/{{this.rpsgameService._roundselection}}</div>
+        <!-- <div class="gamecode">Game Code: XYZ123</div> -->
     </div>
 
-
-
-    <div *ngIf="this.rpsgameService.showHideDevInfo === true">
+    <div *ngIf="this.optionsService.showHideDevInfo === true">
         <a routerLink="/create">move to create</a> <br>
         <a routerLink="/selection">move to selection</a> <br>
         <a routerLink="/result">move to result</a> <br>
@@ -26,7 +18,8 @@
         CPU Choice: {{rpsgameService._cpuselection}}<br>
         Result: {{rpsgameService._result}}<br>
         username: {{rpsgameService._username}}<br>
-        winRatio: {{rpsgameService._winRatio}}<br>
         turnsPlayed: {{rpsgameService._turnsPlayed}}
+        
     </div>
+
 </div>

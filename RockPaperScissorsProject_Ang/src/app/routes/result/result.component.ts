@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RPSGameService } from "../../services/RPSGame.service";
+import { LeaderboardService } from "../../services/leaderboard.service";
 
 @Component({
   selector: 'app-result',
@@ -9,13 +10,13 @@ import { RPSGameService } from "../../services/RPSGame.service";
 
 export class ResultComponent implements OnInit {
 
-  constructor(public rpsgameService: RPSGameService) { }
+  constructor(public rpsgameService: RPSGameService, public leaderboardService : LeaderboardService) { }
 
   ngOnInit(): void {
 }
 
 SeeLeaderboard() {
-  this.rpsgameService.Leaderboard();
+  this.leaderboardService.Leaderboard();
 }
 
 }

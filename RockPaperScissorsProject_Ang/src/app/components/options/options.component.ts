@@ -41,6 +41,6 @@ export class OptionsComponent implements OnInit {
   }
 
   ResetUsername() {
-    this.rpsgameService._UNSubmitted = false;
+    this.rpsgameService.UNSubmitted = false;
   }
 }

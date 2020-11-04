@@ -8,26 +8,25 @@
 
     <div class="selectcontainer">
         <div class="LBList">
+            
             <div class="ListTitles">
                 <div>Username</div>
                 <div>Win Ratio</div>
                 <div>Turns Played</div>
             </div>
-            <div class="Listitem">
-                <div>{{rpsgameService._username}}</div>
-                <div>{{rpsgameService._winRatio}}</div>
-                <div>{{rpsgameService._turnsPlayed}}</div>
+
+            <div>
+                <ul *ngFor="let ListItem of rpsgameService.LeaderboardItem">
+
+                    <li class="Listitem">
+                        <div>{{ ListItem.username }}</div>
+                        <div>{{ ListItem.winRatio }}</div>
+                        <div>{{ ListItem.turnsPlayed}}</div>
+                    </li>
+
+                </ul>
             </div>
-            <div class="Listitem">
-                <div>BobFrank</div>
-                <div>50%</div>
-                <div>300</div>
-            </div>
-            <div class="Listitem">
-                <div>BobFrank</div>
-                <div>10%</div>
-                <div>230</div>
-            </div>
+
         </div>
     </div>
 

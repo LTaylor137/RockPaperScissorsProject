@@ -1,0 +1,21 @@
+<app-options></app-options>
+
+<div class="pagecontainer">
+
+    <div class="title">
+        <h1>Select how many rounds</h1>
+    </div>
+
+    <div class="selectcontainer">
+        <div id="1" class="box" (click)="roundSelection('1')">1</div>
+        <div id="3" class="box" (click)="roundSelection('3')">3</div>
+        <div id="5" class="box" (click)="roundSelection('5')">5</div>
+    </div>
+
+    <div>
+        <button class="button" (click)="createGame()"> Create Game </button>
+    </div>
+
+</div>
+
+<app-dev-info></app-dev-info>

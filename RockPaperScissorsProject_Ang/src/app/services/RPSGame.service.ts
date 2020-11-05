@@ -39,10 +39,10 @@ export class RPSGameService {
     if (this._username == null) {
       this._username = "No name entered";
     }
-    //use this when running API on local machine.
+    
     let request = this.httpClient.post<GameResult>("http://localhost:5000/Api/Result",
-      //use this when running API on elastic beanstalk servers.
-      // let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Result",
+    // let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Result",
+
       {
         PlayerChoice: this._playerselection,
         Username: this._username,

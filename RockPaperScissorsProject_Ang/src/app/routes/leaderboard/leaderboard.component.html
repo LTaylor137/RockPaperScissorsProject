@@ -16,7 +16,11 @@
             </div>
 
             <div>
-                <div *ngFor="let ListItem of leaderboardService.LeaderboardItem">
+
+                <!-- how to show on a few items of a list -->
+                <!-- https://stackoverflow.com/questions/37818677/how-can-i-limit-ngfor-repeat-to-some-number-of-items-in-angular -->
+
+                <div *ngFor="let ListItem of leaderboardService.LeaderboardItem | slice:0:3;">
 
                     <div class="Listitem">
                         <div>{{ ListItem.username }}</div>

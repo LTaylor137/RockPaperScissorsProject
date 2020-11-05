@@ -64,11 +64,13 @@ namespace RPS_API.Controllers
             foreach (User item in ListOfPlayers)
             {
                 Percentage = (int)Math.Round((double)(100 * item.Wins) / item.TurnsPlayed);
-                item.WinRatio = Percentage;
+                item.WinRatio = (Percentage.ToString() + '%');
                 ListUnsorted.Add(item);
             }
+
             //using Linq
             //https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
+            
             List<User> ListSorted = ListUnsorted.OrderByDescending(User => User.WinRatio).ToList();
             return ListSorted;
         }

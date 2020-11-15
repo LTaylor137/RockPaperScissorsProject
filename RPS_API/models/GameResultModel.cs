@@ -7,14 +7,14 @@ namespace RPS_API.Models
         public string Username { get; set; }
         public string PlayerChoice { get; set; }
         public string CpuChoice { get; set; }
-        public string Result { get; set; }
+        public string RoundResult { get; set; }
 
         public GameResult(string _username, string _playerChoice)
         {
             Username = _username;
             PlayerChoice = _playerChoice;
             CpuChoice = CalculateCpuChoice();
-            Result = CalculateResult();
+            RoundResult = CalculateResult();
         }
 
         public string CalculateCpuChoice()
@@ -32,17 +32,17 @@ namespace RPS_API.Models
             (this.PlayerChoice == "paper" && this.CpuChoice == "rock") ||
             (this.PlayerChoice == "scissors" && this.CpuChoice == "paper"))
             {
-                this.Result = "Player Wins";
+                this.RoundResult = "Player Wins";
             }
             else
             {
-                this.Result = "CPU Wins";
+                this.RoundResult = "CPU Wins";
             }
 
             //Draw
             if (this.CpuChoice == this.PlayerChoice)
             {
-                this.Result = "It's a Draw";
+                this.RoundResult = "It's a Draw";
             }
 
             //player no selection sent
@@ -50,10 +50,10 @@ namespace RPS_API.Models
             (this.PlayerChoice != "paper") &&
             (this.PlayerChoice != "scissors"))
             {
-                this.Result = "Player did not send a valid selection";
+                this.RoundResult = "Player did not send a valid selection";
             }
 
-            return Result;
+            return RoundResult;
         }
 
     }

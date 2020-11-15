@@ -7,18 +7,20 @@ using System.Linq;
 namespace RPS_API.Controllers
 {
     [ApiController]
-    [Route("Api/Result")]
+    [Route("Api")]
     public class ResultController : ControllerBase
     {
         public static List<User> ListOfPlayers = new List<User>();
         public List<User> ListUnsorted = new List<User>();
+        public GameCodeRequest GameCode = new GameCodeRequest();
 
-        [HttpPost]
+        [HttpPost("GetResult")]
         public GameResult PlayRequest(PlayRequest model)
         {
             GameResult GR = new GameResult(model.Username, model.PlayerChoice);
             bool nameexists = false;
 
+            // check if user exists in list
             foreach (User item in ListOfPlayers)
             {
                 if (item.Username.Contains(model.Username))
@@ -28,13 +30,14 @@ namespace RPS_API.Controllers
                 }
             }
 
+            // if user exists, +1 to turns played and wins (if winner)
             if (nameexists == true)
             {
                 foreach (User item in ListOfPlayers)
                 {
                     if (item.Username.Contains(model.Username))
                     {
-                        if (GR.Result == "Player Wins")
+                        if (GR.RoundResult == "Player Wins")
                         {
                             item.Wins++;
                         }
@@ -43,17 +46,17 @@ namespace RPS_API.Controllers
                 }
             }
 
-            //creates a new user with 1 turnplayed(from App) and a private variable if they won.
+            //if user doesn't exist, create a new user, then , +1 to turns played and wins (if winner)
             if (nameexists == false)
             {
                 int newplayerwin = 0;
-                if (GR.Result == "Player Wins")
+                if (GR.RoundResult == "Player Wins")
                 {
                     newplayerwin = 1;
                 }
                 ListOfPlayers.Add(new User(model.Username, model.TurnsPlayed, newplayerwin));
             }
-            
+
             return GR;
         }
 
@@ -64,18 +67,23 @@ namespace RPS_API.Controllers
             foreach (User item in ListOfPlayers)
             {
                 Percentage = (int)Math.Round((double)(100 * item.Wins) / item.TurnsPlayed);
-                item.WinRatio = (Percentage.ToString() + '%');
+                item.WinRatio = Percentage;
                 ListUnsorted.Add(item);
             }
 
             //using Linq
             //https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
-            
+
             List<User> ListSorted = ListUnsorted.OrderByDescending(User => User.WinRatio).ToList();
+
             return ListSorted;
         }
 
-
+        [HttpGet("GetGameCode")]
+        public GameCodeRequest GetGameCode()
+        {            
+            return GameCode;
+        }
 
     }
 }

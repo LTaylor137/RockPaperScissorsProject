@@ -6,7 +6,7 @@ namespace RPS_API.Models
         public string Username { get; set; }
         public int TurnsPlayed { get; set; }
         public int Wins { get; set; }
-        public string WinRatio { get; set; }
+        public int WinRatio { get; set; }
 
         public User(string _username, int _turnsPlayed, int _wins)
         {

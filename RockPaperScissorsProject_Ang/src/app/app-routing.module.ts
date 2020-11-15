@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: "selection", component: SelectionComponent },
   { path: "result", component: ResultComponent },
   { path: "leaderboard", component: LeaderboardComponent }, 
-  { path: "**", redirectTo: "selection" }
+  { path: "**", redirectTo: "create" }
 
 ];
 

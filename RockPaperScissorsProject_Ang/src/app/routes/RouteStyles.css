@@ -20,7 +20,24 @@
     align-items: center;
     padding: 50px;
     background-color: rgb(226, 218, 159);
-    border-radius: 10px;
+    border-radius: 30px;
+}
+
+.resultcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: rgb(226, 218, 159);
+    border-radius: 30px;
+}
+
+.result {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    /* align-items: center; */
 }
 
 .box, .Tbox, .Vbox {
@@ -33,7 +50,8 @@
     padding: 10px;
     display: inline-block;
     cursor: pointer;
-    border-radius: 40px;
+    background-color: rgb(251, 247, 199);
+    border-radius: 30px;
 }
 
 .Tbox {
@@ -41,7 +59,6 @@
     justify-content: center;
     align-items: center;
     color: black;
-    background-color: rgb(251, 247, 199);
     font-size: xx-large;
     font-weight: bold;
 }
@@ -53,6 +70,50 @@
     color: black;
     font-size: xx-large;
     font-weight: bold;
+    background-color: transparent;
+}
+
+.boxgameresult {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin: 3px;
+    padding: 3px;
+    display: inline-block;
+    -webkit-user-select: none;
+    background-color: rgb(251, 247, 199);
+    border-radius: 3px;
+}
+
+.boxgameresulttext {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: small;
+    font-weight: bold;
+    background-color: transparent;
+    width: 100px;
+    -webkit-user-select: none;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.Rtitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+    background-color: transparent;
+    width: 100px;
+    margin: 30px;
+    margin-top: 0px;
 }
 
 .boxselected {
@@ -101,9 +162,13 @@
 
 .Listitem {
     display: inline-grid;
-    grid-template-columns: 230px 230px 20px;
+    grid-template-columns: 230px 200px 40px;
     padding: 10px;
     list-style: none;
     background-color: rgb(251, 247, 199);
     margin-top: 11px;
+}
+
+.LIRightAlign {
+    text-align: end;
 }

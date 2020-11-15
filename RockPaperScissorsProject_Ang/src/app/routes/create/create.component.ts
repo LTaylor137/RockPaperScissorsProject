@@ -12,7 +12,9 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.rpsgameService._currentRound = 0;
-    this.rpsgameService._maxRounds = 0;
+    this.rpsgameService._maxRounds = 1;
+    this.rpsgameService._maxRoundsReached = false;
+    // this.rpsgameService.RoundResultList.clear; 
   }
 
 

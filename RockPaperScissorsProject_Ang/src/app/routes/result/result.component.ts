@@ -10,9 +10,12 @@ import { LeaderboardService } from "../../services/leaderboard.service";
 
 export class ResultComponent implements OnInit {
 
-  constructor(public rpsgameService: RPSGameService, public leaderboardService : LeaderboardService) { }
+  constructor(public rpsgameService: RPSGameService, public leaderboardService: LeaderboardService) { }
 
   ngOnInit(): void {
-}
+    this.rpsgameService.checkmaxroundsmet();
+    this.rpsgameService.calculateGameResult();
+  }
+
 
 }

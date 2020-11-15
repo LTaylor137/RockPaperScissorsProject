@@ -1,24 +1,30 @@
 <div class="devinfo">
 
     <div class="flexrow">
-        <!-- <div class="arrow-right"></div> -->
+        <div class="gamecode">Game Code: {{this.rpsgameService._gameCode}}</div>
+        <div class="arrow-right"></div>
         <div class="spacer"></div>
         <div class="arrow-left"></div>
         <div class="gamecode">Rounds: {{this.rpsgameService._currentRound}}/{{this.rpsgameService._maxRounds}}</div>
-        <!-- <div class="gamecode">Game Code: XYZ123</div> -->
     </div>
 
     <div *ngIf="this.optionsService.showHideDevInfo === true">
-        <a routerLink="/create">move to create</a> <br>
-        <a routerLink="/selection">move to selection</a> <br>
-        <a routerLink="/result">move to result</a> <br>
-        <a routerLink="/leaderboard">move to leaderboard</a> <br><br>
-        roundselection: {{rpsgameService._maxRounds}}<br>
-        player selection: {{rpsgameService._playerselection}}<br>
+        <b>Jump to route:</b> <br>
+        <a routerLink="/create">create</a> <br>
+        <a routerLink="/selection">selection</a> <br>
+        <a routerLink="/result">result</a> <br>
+        <a routerLink="/leaderboard">leaderboard</a> <br><br>
+
+        <b>Variable values:</b> <br>
+        Rounds: {{rpsgameService._maxRounds}}<br>
+        Current Round: {{rpsgameService._currentRound}}<br>
+        Player Selection: {{rpsgameService._playerselection}}<br>
         CPU Choice: {{rpsgameService._cpuselection}}<br>
-        Result: {{rpsgameService._result}}<br>
-        username: {{rpsgameService._username}}<br>
-        turnsPlayed: {{rpsgameService._turnsPlayed}}
+        Result: {{rpsgameService._roundResult}}<br>
+        Username: {{rpsgameService._username}}<br>
+        Max Rounds Reached?: {{rpsgameService._maxRoundsReached }} <br>
+        Game Code: {{rpsgameService._gameCode }} <br>
+        RoundResultList {{rpsgameService.RoundResultList}} <br>
         
     </div>
 

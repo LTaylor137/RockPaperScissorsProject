@@ -8,7 +8,7 @@
 
     <div class="selectcontainer">
         <div class="LBList">
-            
+
             <div class="ListTitles">
                 <div>Username</div>
                 <div>Win Ratio</div>
@@ -24,8 +24,8 @@
 
                     <div class="Listitem">
                         <div>{{ ListItem.username }}</div>
-                        <div>{{ ListItem.winRatio }}</div>
-                        <div>{{ ListItem.turnsPlayed}}</div>
+                        <div>{{ ListItem.winRatio }}%</div>
+                        <div class="LIRightAlign">{{ ListItem.turnsPlayed}}</div>
                     </div>
 
                 </div>
@@ -34,10 +34,22 @@
         </div>
     </div>
 
-    <div>
-        <button class="button" routerLink="selection"> Play Again </button>
+    <div class="flexrow">
+        <div class="buttondiv">
+            <!-- //contains nothing just here for space. -->
+        </div>
+        <div>
+            <button class="button" routerLink="/result"> Back To Results </button>
+        </div>
+        <div>
+            <button class="button" routerLink="/create"> New Game </button>
+        </div>
+        <div class="buttondiv">
+            <!-- //contains nothing just here for space. -->
+        </div>
     </div>
-
 </div>
+
+
 
 <app-dev-info></app-dev-info>

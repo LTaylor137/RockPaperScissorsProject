@@ -7,7 +7,7 @@ export interface PlayRequest {
 export interface GameResult {
     playerChoice: string;
     cpuChoice: string;
-    result: string;
+    roundResult: string;
 }
 
 // Javascript requires the response

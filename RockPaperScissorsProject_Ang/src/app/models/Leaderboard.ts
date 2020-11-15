@@ -7,5 +7,5 @@ export interface LeaderboardResponse {
     username: string;
     turnsPlayed: number;
     wins: number;
-    winRatio: string; 
+    winRatio: number; 
 }

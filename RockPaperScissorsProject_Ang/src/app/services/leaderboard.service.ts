@@ -16,10 +16,8 @@ export class LeaderboardService {
   ngOnInit(): void { }
 
   Leaderboard() {
-
-    let request = this.httpClient.get<LeaderboardResponse[]>("http://localhost:5000/Api/Result/GetLeaderboard",
+    let request = this.httpClient.get<LeaderboardResponse[]>("http://localhost:5000/Api/GetLeaderboard",
     // let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Leaderboard",
-
     {});
     request.subscribe((response) => {
       this.LeaderboardItem = response;

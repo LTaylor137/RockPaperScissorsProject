@@ -3,7 +3,8 @@
 <div class="pagecontainer">
 
     <div class="title">
-        <h1 *ngIf="rpsgameService._maxRoundsReached === false">Round {{rpsgameService._currentRound}} Result: {{rpsgameService._roundResult}}</h1>
+        <h1 *ngIf="rpsgameService._maxRoundsReached === false">Round {{rpsgameService._currentRound}} Result:
+            {{rpsgameService._roundResult}}</h1>
         <h1 *ngIf="rpsgameService._maxRoundsReached === true">Game Result: {{rpsgameService.GameResult}}</h1>
     </div>
 
@@ -15,14 +16,19 @@
 
     <div class="resultcontainer" *ngIf="rpsgameService._maxRoundsReached === true">
         <div class="flexrow">
+
             <div class="spacer"></div>
-            <div class="Rtitle">player</div>
-            <div class="Rtitle"></div>
-            <div class="Rtitle">cpu</div>
+            <div class="Rtitle">{{this.rpsgameService._username}}</div>
+
+            <div class="spacer"></div>
+
+            <div class="Rtitle">CPU</div>
+
             <div class="spacer"></div>
         </div>
         <!-- *ngFor="let i = Index of rpsgameService.RoundResultList"  -->
-        <div class="flexrow" *ngFor="let ListItem of rpsgameService.RoundResultList| slice:0:rpsgameService._maxRounds; let i = index ">
+        <div class="flexrow"
+            *ngFor="let ListItem of rpsgameService.RoundResultList| slice:0:rpsgameService._maxRounds; let i = index ">
             <div class="boxgameresulttext">Round {{i+1}}</div>
             <div class="spacer"></div>
             <div class="boxgameresult"><img class="img" src="../../assets/{{ListItem.playerChoice}}.png"></div>

@@ -1,10 +1,13 @@
 export interface PlayRequest {
+    GameCode: string;
+    TurnNumber: number;
     PlayerChoice: string;
     Username: string;
     TurnsPlayed: number;
+    GameResult: string;
 }
 
-export interface GameResult {
+export interface RoundResult {
     playerChoice: string;
     cpuChoice: string;
     roundResult: string;

@@ -11,6 +11,7 @@ export class CreateComponent implements OnInit {
   constructor(public rpsgameService: RPSGameService) { }
 
   ngOnInit(): void {
+    this.rpsgameService._gameCode = "";
     this.rpsgameService._currentRound = 0;
     this.rpsgameService._maxRounds = 1;
     this.rpsgameService._maxRoundsReached = false;

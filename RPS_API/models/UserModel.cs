@@ -8,12 +8,12 @@ namespace RPS_API.Models
         public int Wins { get; set; }
         public int WinRatio { get; set; }
 
-        public User(string _username, int _turnsPlayed, int _wins)
+        public User(string _username, int _turnsPlayed, int _wins, int _winRatio)
         {
             this.Username = _username;
             this.Wins = _wins;
             this.TurnsPlayed = _turnsPlayed;
-            //winratio is calculated in controller
+            this.WinRatio = _winRatio;
         }
     }
 }

@@ -66,7 +66,7 @@ namespace RPS_API.Controllers
                 {
                     newplayerwin = 1;
                 }
-                ListOfPlayers.Add(new User(model.Username, model.TurnsPlayed, newplayerwin));
+                ListOfPlayers.Add(new User(model.Username, model.TurnsPlayed, newplayerwin, 10));
             }
 
             SqlConnection connection = new SqlConnection(connectionString);
@@ -111,35 +111,32 @@ namespace RPS_API.Controllers
         {
             SqlConnection connection = new SqlConnection(connectionString);
 
-            string queryString = "SELECT * FROM ROUND";
-            
+            string queryString = "SELECT P.USERNAME, COUNT(R.USERNAME) AS RNDSPLD," +
+            "(SELECT COUNT(CASE ROUNDRESULT WHEN 'Player Wins' THEN 1 ELSE NULL END) AS blah)"
+            + "FROM [ROUND] R INNER JOIN [PLAYER] P ON P.USERNAME = R.USERNAME GROUP BY P.USERNAME";
+
             var command = new SqlCommand(queryString, connection);
             connection.Open();
+            int WinRatio;
 
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
+                    //get win ratio percentage
+                    WinRatio = (int)Math.Round((double)(100 * (int)reader[2]) / (int)reader[1]);
+                    //add all values as a list item to ListfromDB
                     ListfromDB.Add(
-                    new User(reader[0].ToString(), (int)reader[3], (int)reader[3])
+                    new User(reader[0].ToString(), (int)reader[1], (int)reader[2], (int)WinRatio)
                     );
                 };
             };
-            return ListfromDB;
+            
+            //using Linq
+            //https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
+            List<User> ListSorted = ListfromDB.OrderByDescending(User => User.WinRatio).ToList();
 
-            //     int Percentage;
-            //         foreach (User item in ListOfPlayers)
-            //         {
-            //             Percentage = (int) Math.Round((double)(100 * item.Wins) / item.TurnsPlayed);
-            //             item.WinRatio = Percentage;
-            //             ListUnsorted.Add(item);
-            //         }
-
-            // //using Linq
-            // //https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
-            // List<User> ListSorted = ListUnsorted.OrderByDescending(User => User.WinRatio).ToList();
-
-            // return ListSorted;
+            return ListSorted;
         }
 
         [HttpPost("CreateGame")]

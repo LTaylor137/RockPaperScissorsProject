@@ -13,6 +13,7 @@
                 <div>Username</div>
                 <div>Win Ratio</div>
                 <div>Turns Played</div>
+                <div>Last5Games</div>
             </div>
 
             <div>
@@ -25,7 +26,8 @@
                     <div class="Listitem">
                         <div>{{ ListItem.username }}</div>
                         <div>{{ ListItem.winRatio }}%</div>
-                        <div class="LIRightAlign">{{ ListItem.turnsPlayed}}</div>
+                        <div>{{ ListItem.turnsPlayed}}</div>
+                        <div class="LIRightAlign">{{ListItem.gameResultString}}</div>
                     </div>
 
                 </div>

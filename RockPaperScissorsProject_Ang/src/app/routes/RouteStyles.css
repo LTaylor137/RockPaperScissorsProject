@@ -157,13 +157,13 @@
 
 .ListTitles {
     display: inline-grid;
-    grid-template-columns: 220px 170px 100px;
+    grid-template-columns: 150px 110px 130px 80px;
     font-weight: bold;
 }
 
 .Listitem {
     display: inline-grid;
-    grid-template-columns: 230px 200px 40px;
+    grid-template-columns: 160px 150px 80px 80px;
     padding: 10px;
     list-style: none;
     background-color: rgb(251, 247, 199);

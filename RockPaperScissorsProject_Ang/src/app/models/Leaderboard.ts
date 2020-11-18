@@ -8,4 +8,5 @@ export interface LeaderboardResponse {
     turnsPlayed: number;
     wins: number;
     winRatio: number; 
+    gameResultString: string;
 }

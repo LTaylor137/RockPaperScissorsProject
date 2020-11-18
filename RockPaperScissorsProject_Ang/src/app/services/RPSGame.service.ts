@@ -19,7 +19,6 @@ export class RPSGameService {
   _username: string | null;
   _turnsPlayed: number | null;
   _gameCode: string | null;
-
   RoundResultList: RoundResult[] = [];
   GameResult: string | null;
 
@@ -40,7 +39,7 @@ export class RPSGameService {
     } else if (CWin > PWin) {
       this.GameResult = "CPU Wins Game"
     } else {
-      this.GameResult = "Draw Game"
+      this.GameResult = "It's a Draw"
     }
 
     //send gameresult to server

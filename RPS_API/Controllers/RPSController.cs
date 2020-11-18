@@ -67,7 +67,7 @@ namespace RPS_API.Controllers
                 {
                     newplayerwin = 1;
                 }
-                ListOfPlayers.Add(new User(model.Username, model.TurnsPlayed, newplayerwin, 10, "adam"));
+                ListOfPlayers.Add(new User(model.Username, model.TurnsPlayed, newplayerwin, 0, ""));
             }
 
             SqlConnection connection = new SqlConnection(connectionString);
@@ -105,7 +105,7 @@ namespace RPS_API.Controllers
                 case "CPU Wins Game":
                     sendresult = "L";
                     break;
-                case "Draw Game":
+                case "It's a Draw":
                     sendresult = "D";
                     break;
             }

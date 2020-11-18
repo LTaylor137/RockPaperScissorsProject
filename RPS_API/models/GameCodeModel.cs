@@ -4,10 +4,15 @@ namespace RPS_API.Models
 {
     public class GameCodeRequest
     {
+        public string Username { get; set; }
         public string GameCode { get; set; }
+        public DateTime DateTime { get; set; }
+        
 
-        public GameCodeRequest()
+        public GameCodeRequest(string _username)
         {
+            this.DateTime = DateTime.Now;
+            Username = _username;
             GameCode = CalculateGameCode();
         }
 

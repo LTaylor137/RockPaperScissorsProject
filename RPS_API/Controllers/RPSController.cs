@@ -26,6 +26,7 @@ namespace RPS_API.Controllers
         }
         public static List<User> ListOfPlayers = new List<User>();
         public List<User> ListUnsorted = new List<User>();
+
         public List<User> ListfromDB = new List<User>();
 
         [HttpPost("GetRoundResult")]
@@ -66,7 +67,7 @@ namespace RPS_API.Controllers
                 {
                     newplayerwin = 1;
                 }
-                ListOfPlayers.Add(new User(model.Username, model.TurnsPlayed, newplayerwin, 10));
+                ListOfPlayers.Add(new User(model.Username, model.TurnsPlayed, newplayerwin, 10, "adam"));
             }
 
             SqlConnection connection = new SqlConnection(connectionString);
@@ -94,12 +95,25 @@ namespace RPS_API.Controllers
         {
             GetGameResult GGR = new GetGameResult(model.GameCode, model.GameResult);
             SqlConnection connection = new SqlConnection(connectionString);
+            string sendresult = "";
+
+            switch (model.GameResult)
+            {
+                case "Player Wins Game":
+                    sendresult = "W";
+                    break;
+                case "CPU Wins Game":
+                    sendresult = "L";
+                    break;
+                case "Draw Game":
+                    sendresult = "D";
+                    break;
+            }
 
             string queryString = "UPDATE GAME SET GAMERESULT = @GameResult WHERE GAMECODE = @GameCode";
-
             SqlCommand command = new SqlCommand(queryString, connection);
             command.Parameters.AddWithValue("@GameCode", model.GameCode);
-            command.Parameters.AddWithValue("@GameResult", model.GameResult);
+            command.Parameters.AddWithValue("@GameResult", sendresult);
 
             connection.Open();
             var result = command.ExecuteNonQuery();
@@ -111,8 +125,8 @@ namespace RPS_API.Controllers
         {
             SqlConnection connection = new SqlConnection(connectionString);
 
-            string queryString = "SELECT P.USERNAME, COUNT(R.USERNAME) AS RNDSPLD," +
-            "(SELECT COUNT(CASE ROUNDRESULT WHEN 'Player Wins' THEN 1 ELSE NULL END) AS blah)"
+            string queryString = "SELECT P.USERNAME, COUNT(R.USERNAME) AS RNDSPLD,"
+            + "(SELECT COUNT(CASE ROUNDRESULT WHEN 'Player Wins' THEN 1 ELSE NULL END) AS blah)"
             + "FROM [ROUND] R INNER JOIN [PLAYER] P ON P.USERNAME = R.USERNAME GROUP BY P.USERNAME";
 
             var command = new SqlCommand(queryString, connection);
@@ -125,13 +139,13 @@ namespace RPS_API.Controllers
                 {
                     //get win ratio percentage
                     WinRatio = (int)Math.Round((double)(100 * (int)reader[2]) / (int)reader[1]);
+                    string NameToPass = reader[0].ToString();
                     //add all values as a list item to ListfromDB
                     ListfromDB.Add(
-                    new User(reader[0].ToString(), (int)reader[1], (int)reader[2], (int)WinRatio)
+                    new User(reader[0].ToString(), (int)reader[1], (int)reader[2], (int)WinRatio, (string)GetGameResultString(reader[0].ToString()))
                     );
                 };
             };
-            
             //using Linq
             //https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
             List<User> ListSorted = ListfromDB.OrderByDescending(User => User.WinRatio).ToList();
@@ -183,7 +197,7 @@ namespace RPS_API.Controllers
             string DBresponse = "";
             SqlConnection connection = new SqlConnection(connectionString);
 
-            string queryString = "SELECT * FROM PLAYER WHERE Username = @checkname";
+            string queryString = "SELECT USERNAME FROM [PLAYER] WHERE Username = @checkname";
             SqlCommand command = new SqlCommand(queryString, connection);
             command.Parameters.AddWithValue("@checkname", checkname);
             connection.Open();
@@ -203,6 +217,26 @@ namespace RPS_API.Controllers
             return NameExists;
         }
 
+        public string GetGameResultString(string passedname)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            string WinString = "";
+            string queryString = "SELECT GAMERESULT FROM [GAME] WHERE USERNAME = @checkname ORDER BY GDATETIME";
+
+            SqlCommand command = new SqlCommand(queryString, connection);
+            command.Parameters.AddWithValue("@checkname", passedname);
+            connection.Open();
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    WinString = WinString + (reader[0].ToString());
+                }
+            }
+            return WinString;
+        }
 
 
     }

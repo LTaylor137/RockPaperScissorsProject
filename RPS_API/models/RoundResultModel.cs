@@ -5,9 +5,9 @@ namespace RPS_API.Models
     public class GetRoundResult
     {
         public string Username { get; set; }
-        public DateTime DateTime { get; set; }
+        public string DateTimeStr { get; set; }
         public string PlayerChoice { get; set; }
-         public string GameCode { get; set; }
+        public string GameCode { get; set; }
         public string CpuChoice { get; set; }
         public int TurnNumber { get; set; }
         public string RoundResult { get; set; }
@@ -15,14 +15,20 @@ namespace RPS_API.Models
 
         public GetRoundResult(string _gameCode, string _username, string _playerChoice)
         {
-            this.DateTime = DateTime.Now;
+            this.DateTimeStr = CreateDateTimeString();
             this.GameCode = _gameCode;
             this.Username = _username;
             this.PlayerChoice = _playerChoice;
             this.CpuChoice = CalculateCpuChoice();
             this.RoundResult = CalculateResult();
         }
-        
+
+        public string CreateDateTimeString()
+        {
+            string DTConvert = DateTime.Now.ToString("yyyyMMddHHmmssms");
+            return DTConvert;
+        }
+
         public string CalculateCpuChoice()
         {
             string[] options = { "rock", "paper", "scissors" };

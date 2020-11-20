@@ -79,7 +79,7 @@ namespace RPS_API.Controllers
             SqlCommand command = new SqlCommand(queryString, connection);
             command.Parameters.AddWithValue("@Username", GR.Username);
             command.Parameters.AddWithValue("@GameCode", model.GameCode);
-            command.Parameters.AddWithValue("@DateTime", GR.DateTime);
+            command.Parameters.AddWithValue("@DateTime", GR.DateTimeStr);
             command.Parameters.AddWithValue("@TurnNumber", model.TurnNumber);
             command.Parameters.AddWithValue("@PlayerChoice", GR.PlayerChoice);
             command.Parameters.AddWithValue("@CpuChoice", GR.CpuChoice);
@@ -87,7 +87,9 @@ namespace RPS_API.Controllers
 
             connection.Open();
             var result = command.ExecuteNonQuery();
+            connection.Close();
             return GR;
+
         }
 
         [HttpPost("SendGameResult")]
@@ -115,9 +117,17 @@ namespace RPS_API.Controllers
             command.Parameters.AddWithValue("@GameCode", model.GameCode);
             command.Parameters.AddWithValue("@GameResult", sendresult);
 
-            connection.Open();
-            var result = command.ExecuteNonQuery();
-            return GGR;
+            try
+            {
+                connection.Open();
+                var result = command.ExecuteNonQuery();
+                return GGR;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
         }
 
         [HttpGet("GetLeaderboard")]
@@ -133,24 +143,30 @@ namespace RPS_API.Controllers
             connection.Open();
             int WinRatio;
 
-            using (SqlDataReader reader = command.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    //get win ratio percentage
-                    WinRatio = (int)Math.Round((double)(100 * (int)reader[2]) / (int)reader[1]);
-                    string NameToPass = reader[0].ToString();
-                    //add all values as a list item to ListfromDB
-                    ListfromDB.Add(
-                    new User(reader[0].ToString(), (int)reader[1], (int)reader[2], (int)WinRatio, (string)GetGameResultString(reader[0].ToString()))
-                    );
+                    while (reader.Read())
+                    {
+                        //get win ratio percentage
+                        WinRatio = (int)Math.Round((double)(100 * (int)reader[2]) / (int)reader[1]);
+                        string NameToPass = reader[0].ToString();
+                        //add all values as a list item to ListfromDB
+                        ListfromDB.Add(
+                        new User(reader[0].ToString(), (int)reader[1], (int)reader[2], (int)WinRatio, (string)GetGameResultString(reader[0].ToString()))
+                        );
+                    };
                 };
-            };
-            //using Linq
-            //https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
-            List<User> ListSorted = ListfromDB.OrderByDescending(User => User.WinRatio).ToList();
-
-            return ListSorted;
+                //using Linq
+                //https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
+                List<User> ListSorted = ListfromDB.OrderByDescending(User => User.WinRatio).ToList();
+                return ListSorted;
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         [HttpPost("CreateGame")]
@@ -173,20 +189,20 @@ namespace RPS_API.Controllers
 
             SqlCommand command = new SqlCommand(queryString, connection);
             command.Parameters.AddWithValue("@Username", GCR.Username);
-            command.Parameters.AddWithValue("@GDateTime", GCR.DateTime);
+            command.Parameters.AddWithValue("@GDateTime", GCR.DateTimeStr);
             command.Parameters.AddWithValue("@GameCode", GCR.GameCode);
             connection.Open();
 
-            // try
-            // {
-            var result = command.ExecuteNonQuery();
-            return GCR;
-            // }
-            // catch (SqlException se)
-            // {
-            //     return Game;
-            //     return "Cannot Delete user with id: 91" + se.Message;
-            // }
+            try
+            {
+                var result = command.ExecuteNonQuery();
+                return GCR;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
 
         }
 
@@ -202,19 +218,25 @@ namespace RPS_API.Controllers
             command.Parameters.AddWithValue("@checkname", checkname);
             connection.Open();
 
-            using (SqlDataReader reader = command.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    DBresponse = reader[0].ToString();
+                    while (reader.Read())
+                    {
+                        DBresponse = reader[0].ToString();
+                    }
                 }
+                if (DBresponse == checkname)
+                {
+                    NameExists = true;
+                }
+                return NameExists;
             }
-            if (DBresponse == checkname)
+            finally
             {
-                NameExists = true;
+                connection.Close();
             }
-
-            return NameExists;
         }
 
         public string GetGameResultString(string passedname)
@@ -235,6 +257,7 @@ namespace RPS_API.Controllers
                     WinString = WinString + (reader[0].ToString());
                 }
             }
+            connection.Close();
             return WinString;
         }
 

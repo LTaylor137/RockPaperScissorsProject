@@ -8,7 +8,7 @@
 .optionsdrawer {
     background-color:  rgb(146, 112, 39);
     min-height: 20px;
-    padding: 10px;
+    padding: 5px;
 }
 
 .spacer {
@@ -58,6 +58,18 @@
     margin-left: 8px;
     cursor: pointer;
     border: 2px solid rgb(146, 112, 39);
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+.option{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: bold;
+    margin-left: 8px;
+    padding: 5px;
+    cursor: pointer;
+    border: 1.5px solid white;
     border-radius: 8px;
     background-color: transparent;
 }

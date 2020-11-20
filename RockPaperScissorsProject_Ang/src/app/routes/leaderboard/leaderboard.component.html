@@ -17,39 +17,26 @@
             </div>
 
             <div>
-
                 <!-- how to show on a few items of a list -->
                 <!-- https://stackoverflow.com/questions/37818677/how-can-i-limit-ngfor-repeat-to-some-number-of-items-in-angular -->
-
                 <div *ngFor="let ListItem of leaderboardService.LeaderboardItem | slice:0:3;">
-
                     <div class="Listitem">
                         <div>{{ ListItem.username }}</div>
                         <div>{{ ListItem.winRatio }}%</div>
                         <div>{{ ListItem.turnsPlayed}}</div>
                         <div class="LIRightAlign">{{ListItem.gameResultString}}</div>
                     </div>
-
                 </div>
             </div>
 
         </div>
     </div>
 
-    <div class="flexrow">
-        <div class="buttondiv">
-            <!-- //contains nothing just here for space. -->
-        </div>
-        <div>
-            <button class="button" routerLink="/result"> Back To Results </button>
-        </div>
-        <div>
+    <div class="buttoncontainer">
             <button class="button" routerLink="/create"> New Game </button>
-        </div>
-        <div class="buttondiv">
-            <!-- //contains nothing just here for space. -->
-        </div>
+            <button class="button" routerLink="/result"> Back To Results </button>
     </div>
+    
 </div>
 
 

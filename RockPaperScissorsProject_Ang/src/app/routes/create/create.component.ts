@@ -4,7 +4,7 @@ import { RPSGameService } from "../../services/RPSGame.service";
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['../RouteStyles.css']
+  styleUrls: ['create.css']
 })
 export class CreateComponent implements OnInit {
 

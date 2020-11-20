@@ -19,15 +19,15 @@ export class RPSGameService {
   _username: string | null;
   _turnsPlayed: number | null;
   _gameCode: string | null;
-  RoundResultList: RoundResult[] = [];
-  GameResult: string | null;
+  _roundResultList: RoundResult[] = [];
+  _gameResult: string | null;
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   calculateGameResult() {
     var PWin = 0;
     var CWin = 0;
-    this.RoundResultList.forEach(element => {
+    this._roundResultList.forEach(element => {
       if (element.roundResult == "Player Wins") {
         PWin++;
       } else if (element.roundResult == "CPU Wins") {
@@ -35,27 +35,25 @@ export class RPSGameService {
       }
     });
     if (PWin > CWin) {
-      this.GameResult = "Player Wins Game"
+      this._gameResult = "Player Wins Game"
     } else if (CWin > PWin) {
-      this.GameResult = "CPU Wins Game"
+      this._gameResult = "CPU Wins Game"
     } else {
-      this.GameResult = "It's a Draw"
+      this._gameResult = "It's a Draw"
     }
-
-    //send gameresult to server
-    let request = this.httpClient.post<PlayRequest>("http://localhost:5000/Api/SendGameResult",
-      // let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Result",
+    //send _gameResult to DataBase
+    let request = this.httpClient.post<PlayRequest>("http://localhost:5000/Api/Send_gameResult",
+      // let request = this.httpClient.post<_gameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Result",
       {
         GameCode: this._gameCode,
-        GameResult: this.GameResult,
+        GameResult: this._gameResult,
       } as PlayRequest);
     request.subscribe((response) => {
     },
-    )
+    )                           // Can I remove this response?
   }
 
-
-checkmaxroundsmet() {
+checkMaxRoundsMet() {
   if (this._currentRound == this._maxRounds) {
     this._maxRoundsReached = true;
   } else {
@@ -72,13 +70,11 @@ createGame() {
   if (this._username == null) {
     alert("You must enter a username before you can create a game")
   } else {
-
-    for (let x = 0; x < this.RoundResultList.length; x++) {
-      this.RoundResultList.splice(x);
+    for (let x = 0; x < this._roundResultList.length; x++) {
+      this._roundResultList.splice(x);
     }
-
     let request = this.httpClient.post<GameCodeRequest>("http://localhost:5000/Api/CreateGame",
-      // let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Result",
+      // let request = this.httpClient.post<_gameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Result",
       {
         Username: this._username,
       } as PlayRequest);
@@ -110,12 +106,12 @@ commitSelection() {
       this._username = "No name entered";
     }
 
-    if (this.GameResult == null) {
-      this.GameResult = "noneyet"
+    if (this._gameResult == null) {
+      this._gameResult = "NoGameResult"
     }
 
     let request = this.httpClient.post<RoundResult>("http://localhost:5000/Api/GetRoundResult",
-      // let request = this.httpClient.post<GameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Result",
+      // let request = this.httpClient.post<_gameResult>("http://Rpsapi-env-1.eba-jc4wmqcm.us-east-1.elasticbeanstalk.com/Result",
       {
         GameCode: this._gameCode,
         TurnNumber: this._currentRound,
@@ -124,8 +120,7 @@ commitSelection() {
         TurnsPlayed: this._turnsPlayed,
       } as PlayRequest);
     request.subscribe((response) => {
-      // this.RoundResultList[this._currentRound] = response; // adds response values to a temporary list in order to get all round results later.
-      this.RoundResultList.push(response);
+      this._roundResultList.push(response);
       this._playerselection = response.playerChoice;
       this._cpuselection = response.cpuChoice;
       this._roundResult = response.roundResult;

@@ -5,7 +5,7 @@ import { LeaderboardService } from "../../services/leaderboard.service";
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
-  styleUrls: ['../RouteStyles.css']
+  styleUrls: ['result.css']
 })
 
 export class ResultComponent implements OnInit {
@@ -13,7 +13,7 @@ export class ResultComponent implements OnInit {
   constructor(public rpsgameService: RPSGameService, public leaderboardService: LeaderboardService) { }
 
   ngOnInit(): void {
-    this.rpsgameService.checkmaxroundsmet();
+    this.rpsgameService.checkMaxRoundsMet();
     this.rpsgameService.calculateGameResult();
   }
 

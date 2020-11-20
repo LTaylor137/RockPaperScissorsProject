@@ -3,9 +3,10 @@
 <div class="pagecontainer">
 
     <div class="title">
-        <h1 *ngIf="rpsgameService._maxRoundsReached === false">Round {{rpsgameService._currentRound}} Result:
-            {{rpsgameService._roundResult}}</h1>
-        <h1 *ngIf="rpsgameService._maxRoundsReached === true">Game Result: {{rpsgameService.GameResult}}</h1>
+        <h1 *ngIf="rpsgameService._maxRoundsReached === false">Round {{rpsgameService._currentRound}} Result</h1>
+        <h1 *ngIf="rpsgameService._maxRoundsReached === false">{{rpsgameService._roundResult}}</h1>
+        <h1 *ngIf="rpsgameService._maxRoundsReached === true">Game Over</h1>
+        <h1 *ngIf="rpsgameService._maxRoundsReached === true">{{rpsgameService._gameResult}}!</h1>
     </div>
 
     <div class="selectcontainer" *ngIf="rpsgameService._maxRoundsReached === false">
@@ -16,19 +17,14 @@
 
     <div class="resultcontainer" *ngIf="rpsgameService._maxRoundsReached === true">
         <div class="flexrow">
-
             <div class="spacer"></div>
             <div class="Rtitle">{{this.rpsgameService._username}}</div>
-
             <div class="spacer"></div>
-
             <div class="Rtitle">CPU</div>
-
             <div class="spacer"></div>
         </div>
-        <!-- *ngFor="let i = Index of rpsgameService.RoundResultList"  -->
         <div class="flexrow"
-            *ngFor="let ListItem of rpsgameService.RoundResultList| slice:0:rpsgameService._maxRounds; let i = index ">
+            *ngFor="let ListItem of rpsgameService._roundResultList| slice:0:rpsgameService._maxRounds; let i = index ">
             <div class="boxgameresulttext">Round {{i+1}}</div>
             <div class="spacer"></div>
             <div class="boxgameresult"><img class="img" src="../../assets/{{ListItem.playerChoice}}.png"></div>
@@ -41,22 +37,13 @@
         </div>
     </div>
 
-    <div class="flexrow" *ngIf="rpsgameService._maxRoundsReached === false">
-        <div class="buttondiv"> </div>
-        <div class="buttondiv">
-            <button class="button" routerLink="/selection"> Play Round {{rpsgameService._currentRound+1}}</button>
-        </div>
-        <div class="buttondiv"> </div>
+    <div class="buttoncontainer" *ngIf="rpsgameService._maxRoundsReached === false">
+        <button class="button" routerLink="/selection"> Play Round {{rpsgameService._currentRound+1}}</button>
     </div>
 
-    <div class="flexrow" *ngIf="rpsgameService._maxRoundsReached === true">
-        <div class="buttondiv"> </div>
-        <div class="buttondiv">
-            <button class="button" routerLink="/create"> New Game </button>
-        </div>
-        <div class="buttondiv">
-            <button class="button" routerLink="/leaderboard"> See Leaderboard >> </button>
-        </div>
+    <div class="buttoncontainer" *ngIf="rpsgameService._maxRoundsReached === true">
+        <button class="button" routerLink="/create">New Game</button>
+        <button class="button" routerLink="/leaderboard">Leaderboard</button>
     </div>
 
 </div>

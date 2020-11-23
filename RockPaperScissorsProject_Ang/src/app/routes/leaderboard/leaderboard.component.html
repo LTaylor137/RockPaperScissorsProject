@@ -16,7 +16,9 @@
                 <div>Last5Games</div>
             </div>
 
-            <div>
+            <div class="Listitem" *ngIf="leaderboardService.loading">Loading Results...</div>
+
+            <div *ngIf="leaderboardService.loaded">
                 <!-- how to show on a few items of a list -->
                 <!-- https://stackoverflow.com/questions/37818677/how-can-i-limit-ngfor-repeat-to-some-number-of-items-in-angular -->
                 <div *ngFor="let ListItem of leaderboardService.LeaderboardItem | slice:0:3;">

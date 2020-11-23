@@ -257,8 +257,19 @@ namespace RPS_API.Controllers
                     WinString = WinString + (reader[0].ToString());
                 }
             }
+            if (WinString.Length >= 5)
+            {
+                string WinString5 = WinString.Substring(0, 5);
+                return WinString5;
+                connection.Close();
+            }
+            else
+            {
+                return WinString;
+                connection.Close();
+            }
             connection.Close();
-            return WinString;
+
         }
 
 

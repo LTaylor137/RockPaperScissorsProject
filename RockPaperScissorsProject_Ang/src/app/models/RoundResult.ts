@@ -5,6 +5,7 @@ export interface PlayRequest {
     Username: string;
     TurnsPlayed: number;
     GameResult: string;
+    DateTime: string;
 }
 
 export interface RoundResult {

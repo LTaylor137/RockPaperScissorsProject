@@ -6,19 +6,13 @@ namespace RPS_API.Models
     {
         public string Username { get; set; }
         public string GameCode { get; set; }
-        public string DateTimeStr { get; set; }
+        public string DateTime { get; set; }
 
-        public GameCodeRequest(string _username)
+        public GameCodeRequest(string _dateTime, string _username)
         {
-            this.DateTimeStr = CreateDateTimeString();
+            DateTime = _dateTime;
             Username = _username;
             GameCode = CalculateGameCode();
-        }
-
-        public string CreateDateTimeString()
-        {
-            string DTConvert = DateTime.Now.ToString("yyyyMMddHHmmssms");
-            return DTConvert;
         }
 
         public string CalculateGameCode()

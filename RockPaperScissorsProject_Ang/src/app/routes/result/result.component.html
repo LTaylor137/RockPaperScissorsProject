@@ -3,10 +3,8 @@
 <div class="pagecontainer">
 
     <div class="title">
-        <h1 *ngIf="rpsgameService._maxRoundsReached === false">Round {{rpsgameService._currentRound}} Result</h1>
-        <h1 *ngIf="rpsgameService._maxRoundsReached === false">{{rpsgameService._roundResult}}</h1>
-        <h1 *ngIf="rpsgameService._maxRoundsReached === true">Game Over</h1>
-        <h1 *ngIf="rpsgameService._maxRoundsReached === true">{{rpsgameService._gameResult}}!</h1>
+        <h1 *ngIf="rpsgameService._maxRoundsReached === false">Round {{rpsgameService._currentRound}} Result, {{rpsgameService._roundResult}}.</h1>
+        <h1 *ngIf="rpsgameService._maxRoundsReached === true">Game Over, {{rpsgameService._gameResult}}.</h1>
     </div>
 
     <div class="selectcontainer" *ngIf="rpsgameService._maxRoundsReached === false">
@@ -37,11 +35,11 @@
         </div>
     </div>
 
-    <div class="buttoncontainer" *ngIf="rpsgameService._maxRoundsReached === false">
+    <div class="buttoncontainerRR" *ngIf="rpsgameService._maxRoundsReached === false">
         <button class="button" routerLink="/selection"> Play Round {{rpsgameService._currentRound+1}}</button>
     </div>
 
-    <div class="buttoncontainer" *ngIf="rpsgameService._maxRoundsReached === true">
+    <div class="buttoncontainerGR" *ngIf="rpsgameService._maxRoundsReached === true">
         <button class="button" routerLink="/create">New Game</button>
         <button class="button" routerLink="/leaderboard">Leaderboard</button>
     </div>

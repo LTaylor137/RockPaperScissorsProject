@@ -24,7 +24,6 @@
     border-radius: 30px;
 }
 
-
 .box, .Tbox, .Vbox {
     display: flex;
     justify-content: center;

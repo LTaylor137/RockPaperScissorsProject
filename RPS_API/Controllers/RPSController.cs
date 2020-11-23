@@ -73,13 +73,13 @@ namespace RPS_API.Controllers
             SqlConnection connection = new SqlConnection(connectionString);
             string queryString = "INSERT INTO ROUND (USERNAME, GAMECODE, RDATETIME,"
             + "TURNNUMBER, PLAYERCHOICE, CPUCHOICE, ROUNDRESULT)"
-            + "VALUES (@Username, @GameCode, @datetime, @TurnNumber,"
+            + "VALUES (@Username, @GameCode, @DateTime, @TurnNumber,"
             + "@PlayerChoice, @CpuChoice, @RoundResult)";
 
             SqlCommand command = new SqlCommand(queryString, connection);
             command.Parameters.AddWithValue("@Username", GR.Username);
             command.Parameters.AddWithValue("@GameCode", model.GameCode);
-            command.Parameters.AddWithValue("@DateTime", GR.DateTimeStr);
+            command.Parameters.AddWithValue("@DateTime", model.DateTime);
             command.Parameters.AddWithValue("@TurnNumber", model.TurnNumber);
             command.Parameters.AddWithValue("@PlayerChoice", GR.PlayerChoice);
             command.Parameters.AddWithValue("@CpuChoice", GR.CpuChoice);
@@ -173,7 +173,7 @@ namespace RPS_API.Controllers
         public GameCodeRequest CreateGame(PlayRequest model)
         {
             string queryString = "";
-            GameCodeRequest GCR = new GameCodeRequest(model.Username);
+            GameCodeRequest GCR = new GameCodeRequest(model.DateTime, model.Username);
 
             if (CheckUserExists(model.Username) == true)
             {
@@ -182,14 +182,14 @@ namespace RPS_API.Controllers
             else
             {
                 queryString = "INSERT INTO PLAYER (Username) VALUES (@Username)"
-                + "INSERT INTO GAME (Username, GAMECODE) VALUES (@Username, @GameCode)";
+                + "INSERT INTO GAME (Username, GDATETIME, GAMECODE) VALUES (@Username, @GDateTime, @GameCode)";
             }
 
             SqlConnection connection = new SqlConnection(connectionString);
 
             SqlCommand command = new SqlCommand(queryString, connection);
             command.Parameters.AddWithValue("@Username", GCR.Username);
-            command.Parameters.AddWithValue("@GDateTime", GCR.DateTimeStr);
+            command.Parameters.AddWithValue("@GDateTime", model.DateTime);
             command.Parameters.AddWithValue("@GameCode", GCR.GameCode);
             connection.Open();
 

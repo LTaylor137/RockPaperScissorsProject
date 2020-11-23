@@ -9,6 +9,7 @@ namespace RPS_API.Models
         public int TurnsPlayed { get; set; }
         public int TurnNumber { get; set; }
         public string GameResult { get; set; }
+        public string DateTime { get; set; }
     }
 }
 
